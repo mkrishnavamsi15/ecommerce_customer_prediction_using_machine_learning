@@ -1,0 +1,102 @@
+Team 10 - Dataset Preprocessing Steps
+
+Project: E-Commerce Customer Behavior Prediction
+
+1. Dataset Loading
+- The original e-commerce customer behavior dataset was loaded from CSV format.
+- Dataset size: 5,000 rows and 18 columns.
+
+2. Data Inspection
+- Checked column names and data types.
+- Checked for missing values.
+- Checked for duplicate rows.
+- The dataset contained no missing values and no duplicate rows.
+
+3. Categorical Data Inspection
+The following categorical features were identified:
+- Gender
+- City
+- Product_Category
+- Payment_Method
+- Device_Type
+
+4. Target Variable Conversion
+- Target variable: Is_Returning_Customer.
+- The original Boolean target was converted to integer format:
+  False -> 0
+  True  -> 1
+
+5. Date Preprocessing
+- The Date column was converted to datetime format.
+- Three new date-based features were created:
+  - Year
+  - Month
+  - Day_of_Week
+
+6. Feature Engineering
+- A new Discount_Percentage feature was created using:
+
+  Discount_Percentage = (Discount_Amount / (Unit_Price * Quantity)) * 100
+
+- When the denominator was zero, the value was set to 0.
+- Infinite and missing values in Discount_Percentage were replaced with 0.
+
+7. Input Features
+The final input feature set consisted of 18 features:
+
+Numerical features:
+- Age
+- Unit_Price
+- Quantity
+- Discount_Amount
+- Total_Amount
+- Session_Duration_Minutes
+- Pages_Viewed
+- Delivery_Time_Days
+- Customer_Rating
+- Discount_Percentage
+- Year
+- Month
+- Day_of_Week
+
+Categorical features:
+- Gender
+- City
+- Product_Category
+- Payment_Method
+- Device_Type
+
+Target:
+- Is_Returning_Customer
+
+8. Train-Validation-Test Split
+- The data was split using stratified sampling.
+- Training set: 70% (3,500 samples)
+- Validation set: 15% (750 samples)
+- Test set: 15% (750 samples)
+- random_state = 42
+- Stratification was used to preserve the target-class distribution.
+
+9. Numerical Feature Preprocessing
+- Numerical features were standardized using StandardScaler.
+
+10. Categorical Feature Preprocessing
+- Categorical features were converted using OneHotEncoder.
+- handle_unknown='ignore' was used.
+- The preprocessing transformer was fitted only on the training data and then applied to validation and test data.
+
+11. Processed Feature Dimensions
+- After scaling and one-hot encoding, the feature matrix contained 42 columns.
+- Training: 3,500 x 42
+- Validation: 750 x 42
+- Test: 750 x 42
+
+12. Processed Data Validation
+- Checked the processed training, validation, and test matrices for missing values.
+- Checked for infinite values.
+- No missing or infinite values were found.
+
+13. Final Processed Dataset
+- Feature engineering increased the original dataset from 18 columns to 22 columns.
+- The processed dataset was saved as:
+  ecommerce_customer_behavior_processed.csv
