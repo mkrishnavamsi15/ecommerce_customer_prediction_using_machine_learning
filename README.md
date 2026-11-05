@@ -1,0 +1,2 @@
+# ecommerce_customer_prediction_using_machine_learning
+Machine learning project to predict returning e-commerce customers
